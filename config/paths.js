@@ -65,9 +65,38 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
+const apps = {
+  CHECKOUT: 'checkout',
+  PRODUCTS: 'products',
+  STATIC_PAGES: 'static-pages',
+};
+
+const appData = Object.values(apps).map((appName) => {
+  return {
+    js: {
+      name: appName,
+      path: resolveApp(`src/apps/${appName}/index.js`),
+    },
+    html: {
+      chunks: [ appName ],
+      filename: `${appName}.html`,
+      template: resolveApp(`public/base-template.html`),
+    }
+  }
+});
+
+const appRewrites = [
+  { from: /products/, to: `/${apps.PRODUCTS}.html` },
+  { from: /checkout/, to: `/${apps.CHECKOUT}.html` },
+  { from: /static-pages/, to: `/${apps.STATIC_PAGES}.html` },
+  { from: /.*/, to: `/${apps.PRODUCTS}.html` },
+];
+
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
+  appData,
+  appRewrites,
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),

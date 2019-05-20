@@ -1,6 +1,6 @@
 # URL Splitting and React Project
 
-**NOTE:** this project follows the [URL Splitting and React](https://blog.xmartlabs.com/2019/04/29/url-splitting/) blogpost, and is made to show how to configure URL splitting on a React app created with CreateReactApp.
+**NOTE:** this project follows the [URL Splitting and React](https://blog.xmartlabs.com/2019/05/17/url-splitting/) blogpost, and is made to show how to configure URL splitting on a React app created with CreateReactApp.
 
 ## Requirements
 
